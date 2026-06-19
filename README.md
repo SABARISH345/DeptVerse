@@ -7,6 +7,9 @@ DeptVerse is a modern Role-Based Enterprise Resource Planning (ERP) platform des
 The project focuses on improving communication, transparency, and operational efficiency within educational institutions through a centralized digital platform.
 
 ---
+## 🌐 Live Demo
+
+🔗 https://dept-verse.vercel.app
 
 ## ✨ Key Highlights
 

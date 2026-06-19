@@ -8,31 +8,27 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#0f172a',
-          light: '#1e293b',
-          lighter: '#334155',
+          DEFAULT: '#111111',
+          light: '#333333',
+          lighter: '#666666',
         },
         accent: {
-          blue: '#0ea5e9',
-          violet: '#7c3aed',
-          teal: '#14b8a6',
-          cyan: '#22d3ee',
+          blue: '#2563eb',
         },
-        glass: 'rgba(255,255,255,0.05)',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        heading: ['Poppins', 'system-ui', 'sans-serif'],
+        serif: ['Libre Baskerville', 'Georgia', 'serif'],
+        sans: ['Source Sans 3', 'Segoe UI', 'sans-serif'],
+        body: ['Source Sans 3', 'Segoe UI', 'sans-serif'],
       },
-      backdropBlur: {
-        xs: '2px',
+      borderRadius: {
+        DEFAULT: '2px',
       },
       animation: {
-        'fade-in': 'fadeIn 0.6s ease-in-out',
-        'slide-up': 'slideUp 0.5s ease-out',
-        'slide-right': 'slideRight 0.5s ease-out',
-        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'float': 'float 3s ease-in-out infinite',
+        'fade-in': 'fadeIn 0.5s ease-out',
+        'slide-up': 'slideUp 0.4s ease-out',
+        'slide-right': 'slideRight 0.4s ease-out',
+        'float': 'float 5s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -40,22 +36,17 @@ export default {
           '100%': { opacity: '1' },
         },
         slideUp: {
-          '0%': { opacity: '0', transform: 'translateY(30px)' },
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
         slideRight: {
-          '0%': { opacity: '0', transform: 'translateX(-30px)' },
+          '0%': { opacity: '0', transform: 'translateX(-20px)' },
           '100%': { opacity: '1', transform: 'translateX(0)' },
         },
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' },
+          '50%': { transform: 'translateY(-6px)' },
         },
-      },
-      boxShadow: {
-        glass: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
-        glow: '0 0 20px rgba(14, 165, 233, 0.4)',
-        'glow-violet': '0 0 20px rgba(124, 58, 237, 0.4)',
       },
     },
   },

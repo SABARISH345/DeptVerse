@@ -18,8 +18,19 @@ import Login from './pages/Login'
 
 // Portal Pages
 import StudentDashboard from './pages/portal/StudentDashboard'
+import StudentAttendance from './pages/portal/StudentAttendance'
+import StudentTimetable from './pages/portal/StudentTimetable'
+import StudentResults from './pages/portal/StudentResults'
+import StudentFee from './pages/portal/StudentFee'
+
 import FacultyDashboard from './pages/portal/FacultyDashboard'
+import FacultyClasses from './pages/portal/FacultyClasses'
+import FacultyPerformance from './pages/portal/FacultyPerformance'
+
 import AdminPanel from './pages/portal/AdminPanel'
+import AdminStudents from './pages/portal/AdminStudents'
+import AdminFaculty from './pages/portal/AdminFaculty'
+import AdminReports from './pages/portal/AdminReports'
 
 function App() {
   return (
@@ -44,12 +55,35 @@ function App() {
 
         {/* Portal Routes */}
         <Route path="/portal" element={<PortalLayout />}>
-          <Route index element={<Navigate to="/portal/student" replace />} />
-          <Route path="student" element={<StudentDashboard />} />
-          <Route path="faculty" element={<FacultyDashboard />} />
-          <Route path="admin" element={<AdminPanel />} />
-        </Route>
 
+          <Route index element={<Navigate to="/portal/student" replace />} />
+
+          {/* Student */}
+          <Route path="student">
+            <Route index element={<StudentDashboard />} />
+            <Route path="attendance" element={<StudentAttendance />} />
+            <Route path="timetable" element={<StudentTimetable />} />
+            <Route path="results" element={<StudentResults />} />
+            <Route path="fee" element={<StudentFee />} />
+          </Route>
+
+          {/* Faculty */}
+          <Route path="faculty">
+            <Route index element={<FacultyDashboard />} />
+            <Route path="attendance" element={<FacultyClasses />} />
+            <Route path="classes" element={<FacultyClasses />} />
+            <Route path="performance" element={<FacultyPerformance />} />
+          </Route>
+
+          {/* Admin */}
+          <Route path="admin">
+              <Route index element={<AdminPanel />} />
+              <Route path="students" element={<AdminStudents />} />
+              <Route path="faculty" element={<AdminFaculty />} />
+              <Route path="reports" element={<AdminReports />} />
+          </Route>
+
+        </Route>
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

@@ -54,28 +54,32 @@ export default function Chatbot() {
 
             {/* Chat Panel */}
             {isOpen && (
-                <div className="fixed bottom-24 right-6 z-50 w-80 sm:w-96 glass-card shadow-glass overflow-hidden animate-slide-up flex flex-col" style={{ height: '460px' }}>
+                <div className="fixed bottom-24 right-6 z-50 w-80 sm:w-96 bg-slate-800 border border-slate-700 rounded-2xl shadow-2xl overflow-hidden animate-slide-up flex flex-col" style={{ height: '480px' }}>
                     {/* Header */}
-                    <div className="bg-gradient-to-r from-accent-blue to-accent-violet p-4 flex items-center gap-3">
-                        <div className="w-9 h-9 bg-white/20 rounded-xl flex items-center justify-center">
-                            <Bot className="w-5 h-5 text-white" />
+                    <div className="bg-gradient-to-r from-blue-600 to-violet-600 p-4 flex items-center gap-3 shadow-lg">
+                        <div className="w-10 h-10 bg-white/30 rounded-xl flex items-center justify-center shadow-inner">
+                            <Bot className="w-6 h-6 text-white" />
                         </div>
                         <div>
-                            <h4 className="text-white font-semibold font-heading">DeptBot</h4>
-                            <p className="text-white/70 text-xs">CSE Department Assistant</p>
+                            <h4 className="text-white font-semibold font-heading text-base">DeptBot</h4>
+                            <p className="text-white/80 text-xs">CSE Department Assistant</p>
                         </div>
-                        <div className="ml-auto w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                        <div className="ml-auto flex items-center gap-2">
+                            <div className="w-2.5 h-2.5 bg-lime-400 rounded-full animate-pulse"></div>
+                            <span className="text-white/80 text-xs">Online</span>
+                        </div>
                     </div>
 
                     {/* Messages */}
-                    <div className="flex-1 overflow-y-auto p-4 space-y-3">
+                    <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-slate-900/50">
                         {messages.map((msg, i) => (
                             <div key={i} className={`flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}>
-                                <div className={`max-w-[80%] px-4 py-2.5 rounded-2xl text-sm leading-relaxed ${msg.from === 'user'
-                                        ? 'bg-gradient-to-r from-accent-blue to-accent-violet text-white rounded-br-sm'
-                                        : 'bg-white/10 text-slate-200 rounded-bl-sm'
+                                <div className={`max-w-[85%] px-4 py-3 rounded-2xl text-sm leading-relaxed shadow-md ${msg.from === 'user'
+                                        ? 'bg-gradient-to-r from-accent-blue to-accent-violet text-white rounded-br-sm border border-accent-violet/30'
+                                        : 'bg-gradient-to-br from-slate-600 to-slate-700 text-white rounded-bl-sm border border-slate-500/30'
                                     }`}>
-                                    {msg.text}
+                                    {msg.from === 'bot' && <span className="mr-2">🤖</span>}
+                                    <span>{msg.text}</span>
                                 </div>
                             </div>
                         ))}
@@ -83,11 +87,11 @@ export default function Chatbot() {
                         {/* Suggestions */}
                         {showSuggestions && (
                             <div className="space-y-2 pt-2">
-                                <p className="text-slate-500 text-xs">Quick questions:</p>
+                                <p className="text-slate-400 text-xs font-medium">💡 Quick questions:</p>
                                 {faqs.slice(0, 4).map((f) => (
                                     <button key={f.q} onClick={() => handleSend(f.q)}
-                                        className="block w-full text-left text-xs bg-white/5 hover:bg-white/10 border border-white/10 rounded-xl px-3 py-2 text-slate-300 transition-colors">
-                                        {f.q}
+                                        className="block w-full text-left text-xs bg-slate-700/50 hover:bg-accent-blue/30 border border-slate-600/50 rounded-xl px-3 py-2.5 text-slate-200 transition-all hover:border-accent-blue/50 hover:shadow-lg hover:shadow-accent-blue/10">
+                                        <span className="font-medium">→</span> {f.q}
                                     </button>
                                 ))}
                             </div>
@@ -96,17 +100,17 @@ export default function Chatbot() {
                     </div>
 
                     {/* Input */}
-                    <div className="p-3 border-t border-white/10 flex gap-2">
+                    <div className="p-3 border-t border-slate-700 bg-slate-800/50 flex gap-2">
                         <input
                             type="text"
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                            placeholder="Ask anything..."
-                            className="flex-1 bg-white/5 border border-white/10 rounded-xl px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-accent-blue"
+                            placeholder="Type your question..."
+                            className="flex-1 bg-slate-700/50 border border-slate-600 rounded-xl px-4 py-2.5 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-accent-blue focus:shadow-glow transition-all"
                         />
                         <button onClick={() => handleSend()}
-                            className="w-9 h-9 bg-gradient-to-br from-accent-blue to-accent-violet rounded-xl flex items-center justify-center hover:opacity-90 transition-opacity">
+                            className="w-10 h-10 bg-gradient-to-br from-accent-blue to-accent-violet rounded-xl flex items-center justify-center hover:opacity-90 hover:shadow-lg hover:shadow-accent-blue/30 transition-all">
                             <Send className="w-4 h-4 text-white" />
                         </button>
                     </div>

@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Play, BookOpen, Star, Clock } from 'lucide-react'
+import { Play, BookOpen, Star, Clock, Sparkles } from 'lucide-react'
 
 const courses = [
     { title: 'Machine Learning with Python', instructor: 'Dr. Meenakshi', duration: '40h', rating: 4.9, enrolled: 320, tag: 'AI/ML', color: 'from-blue-500 to-cyan-500' },
@@ -14,39 +14,102 @@ const courses = [
 export default function eLearning() {
     return (
         <div className="pt-20">
-            <section className="section-pad bg-gradient-to-br from-primary via-primary-light to-primary">
-                <div className="max-w-4xl mx-auto text-center">
+            <section className="section-pad bg-gradient-to-br from-primary via-primary-light to-primary relative overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(14,165,233,0.15)_0%,_transparent_50%)]" />
+                <motion.div 
+                    className="absolute top-1/2 right-0 w-96 h-96 bg-accent-blue/10 rounded-full blur-[120px]"
+                    animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+                    transition={{ duration: 6, repeat: Infinity }}
+                />
+                <div className="absolute inset-0 opacity-[0.03]"
+                    style={{ backgroundImage: 'linear-gradient(#0ea5e9 1px, transparent 1px), linear-gradient(90deg, #0ea5e9 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+                <div className="max-w-4xl mx-auto text-center relative z-10">
                     <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
-                        <h1 className="text-5xl font-heading font-bold text-white mb-6">e<span className="gradient-text">Learning</span> Portal</h1>
-                        <p className="text-slate-400 text-xl">Department's online course library — learn at your own pace.</p>
+                        <motion.h1 
+                            className="text-5xl font-heading font-bold text-white mb-6"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.2 }}
+                        >
+                            e<span className="gradient-text">Learning</span> Portal
+                        </motion.h1>
+                        <motion.p 
+                            className="text-slate-400 text-xl"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3 }}
+                        >
+                            Department's online course library — learn at your own pace.
+                        </motion.p>
                     </motion.div>
                 </div>
             </section>
 
-            <section className="section-pad">
-                <div className="max-w-7xl mx-auto">
-                    <h2 className="section-title">Available <span className="gradient-text">Courses</span></h2>
-                    <p className="section-subtitle">Created by our expert faculty for students and alumni</p>
+            <section className="section-pad bg-primary-light/50 relative">
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(124,58,237,0.1)_0%,_transparent_50%)]" />
+                <div className="max-w-7xl mx-auto relative z-10">
+                    <motion.h2 
+                        className="section-title"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                    >
+                        Available <span className="gradient-text">Courses</span>
+                    </motion.h2>
+                    <motion.p 
+                        className="section-subtitle mb-12"
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: 0.1 }}
+                    >
+                        Created by our expert faculty for students and alumni
+                    </motion.p>
                     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {courses.map((course, i) => (
-                            <motion.div key={course.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-                                transition={{ delay: i * 0.08 }} viewport={{ once: true }}
-                                className="glass-card overflow-hidden hover:border-white/20 hover:-translate-y-1 transition-all duration-300 group">
+                            <motion.div 
+                                key={course.title} 
+                                initial={{ opacity: 0, y: 30 }} 
+                                whileInView={{ opacity: 1, y: 0 }}
+                                transition={{ delay: i * 0.08 }} 
+                                viewport={{ once: true }}
+                                whileHover={{ y: -5, scale: 1.02 }}
+                                className="glass-card overflow-hidden hover:border-white/20 transition-all duration-300 group glow-border"
+                            >
                                 <div className={`h-3 bg-gradient-to-r ${course.color}`} />
                                 <div className="p-6">
                                     <span className={`inline-block text-xs bg-gradient-to-r ${course.color} text-white px-3 py-1 rounded-full font-medium mb-3`}>
                                         {course.tag}
                                     </span>
-                                    <h3 className="text-white font-semibold font-heading mb-2">{course.title}</h3>
+                                    <h3 className="text-white font-semibold font-heading mb-2 group-hover:gradient-text transition-all">{course.title}</h3>
                                     <p className="text-slate-400 text-sm mb-4">By {course.instructor}</p>
                                     <div className="flex items-center gap-4 text-xs text-slate-500 mb-4">
-                                        <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{course.duration}</span>
-                                        <span className="flex items-center gap-1"><Star className="w-3 h-3 text-yellow-400" />{course.rating}</span>
-                                        <span className="flex items-center gap-1"><BookOpen className="w-3 h-3" />{course.enrolled} enrolled</span>
+                                        <motion.span 
+                                            className="flex items-center gap-1"
+                                            whileHover={{ scale: 1.1 }}
+                                        >
+                                            <Clock className="w-3 h-3" />{course.duration}
+                                        </motion.span>
+                                        <motion.span 
+                                            className="flex items-center gap-1"
+                                            whileHover={{ scale: 1.1 }}
+                                        >
+                                            <Star className="w-3 h-3 text-yellow-400" />{course.rating}
+                                        </motion.span>
+                                        <motion.span 
+                                            className="flex items-center gap-1"
+                                            whileHover={{ scale: 1.1 }}
+                                        >
+                                            <BookOpen className="w-3 h-3" />{course.enrolled}
+                                        </motion.span>
                                     </div>
-                                    <button className={`w-full py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r ${course.color} opacity-80 hover:opacity-100 transition-all flex items-center justify-center gap-2 group-hover:shadow-glow`}>
+                                    <motion.button 
+                                        className={`w-full py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r ${course.color} opacity-80 hover:opacity-100 transition-all flex items-center justify-center gap-2 group-hover:shadow-glow`}
+                                        whileHover={{ scale: 1.02 }}
+                                        whileTap={{ scale: 0.98 }}
+                                    >
                                         <Play className="w-4 h-4" /> Start Learning
-                                    </button>
+                                    </motion.button>
                                 </div>
                             </motion.div>
                         ))}
